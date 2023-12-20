@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragments/head}">
+</head>
+
+<body>
+
+<div>
+    <nav th:replace="~{fragments/navbar}"></nav>
+</div>
+
+
+
+<div class="container">
+    <h2 class="text-center text-white">Update Art</h2>
+    <form method="POST"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="technique">Art Technique</label>
+                <select id="technique" class="form-control">
+                    <option value="">- Select an art technique -</option>
+                    <optgroup label="Category art name">
+                        <option>Art technique</option>
+                    </optgroup>
+                </select>
+                <p class="errors alert alert-danger">
+                    Art technique is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="price" class="text-white font-weight-bold">Price</label>
+                <input  id="price" type="number" min="0" step="100" class="form-control"
+                        placeholder="Suggested price"/>
+                <p class="errors alert alert-danger">
+                    Suggested price is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="style">Art style</label>
+                <select id="style" class="form-control">
+                    <option value="">- Select art style -</option>
+                    <option>
+                        Art style
+                    </option>
+                </select>
+                <p class="errors alert alert-danger">
+                    Art style is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="material">Art Material</label>
+                <select id="material" class="form-control">
+                    <option value="">- Select art material -</option>
+                    <option> Art material
+                    </option>
+                </select>
+                <p class="errors alert alert-danger">
+                    Art material type is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="year" class="text-white font-weight-bold">Year of production</label>
+                <input id="year" type="number" max="2099" step="1" class="form-control"
+                       placeholder="Manufacturing year"/>
+                <p class="errors alert alert-danger">
+                    Art production year is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-white font-weight-bold" for="dimensions">Dimensions</label>
+                <textarea id="dimensions" type="textarea" class="form-control"
+                          placeholder="Dimensions in centimeters">
+            </textarea>
+                <p class="errors alert alert-danger">
+                    Dimensions in centimeters is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="description">Description</label>
+            <textarea id="description" type="textarea" class="form-control" rows="3"
+                      placeholder="Description"></textarea>
+            <p class="errors alert alert-danger">
+                Description is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
+            <input id="imageUrl" type="url" class="form-control"
+                   placeholder="Put art image URL here">
+            <p class="errors alert alert-danger">
+                Art image URL is required.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Update Art"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>

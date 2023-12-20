@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragments/head}">
+</head>
+
+<body>
+<div>
+    <nav th:replace="~{fragments/navbar}"></nav>
+</div>
+
+<div class="container">
+    <h2 class="text-center text-white">Upload Art</h2>
+    <form th:method="POST"
+          th:action="@{/art/add}"
+          th:object="${createArtDTO}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+
+            <!-- technique -->
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="techniqueId">Technique</label>
+                <select id="techniqueId"
+                        th:name="techniqueId"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select a technique -</option>
+                    <optgroup
+                            th:each="category: ${categories}"
+                            th:label="${category.name()}">
+                        <option
+                                th:each="technique : ${category.techniques()}"
+                                th:text="${technique.name}"
+                                th:value="${technique.id}"
+                                th:selected="*{techniqueId} == ${technique.id}">
+                            Technique
+                        </option>
+
+                    </optgroup>
+                </select>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Art technique is required.
+                </p>
+            </div>
+            <!-- EO: technique -->
+
+            <!-- Price -->
+            <div class="form-group col-md-6 mb-3">
+                <label for="price" class="text-white font-weight-bold">Price</label>
+                <input id="price"
+                       th:field="*{price}"
+                       th:errorclass="is-invalid"
+                       type="number"
+                       class="form-control"
+                       placeholder="Suggested price"/>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Suggested price is required.
+                </p>
+            </div>
+            <!-- EO: Price -->
+        </div>
+
+
+        <div class="row">
+
+            <!-- Style -->
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="style">Style</label>
+                <select id="style"
+                        th:field="*{style}"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select style type -</option>
+                    <option th:each="e : ${styles}"
+                            th:text="${e}"
+                            th:value="${e}">
+                    </option>
+                </select>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Style type is required.
+                </p>
+            </div>
+            <!-- EO: Style -->
+
+            <!-- Material -->
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="material">Material</label>
+                <select
+                        id="material"
+                        th:field="*{material}"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select material type -</option>
+                    <option th:each="t : ${materials}"
+                            th:text="${t}"
+                            th:value="${t}"
+                            th:selected="${t}">
+                    </option>
+                </select>
+                <p class="invalid-feedback  errors alert alert-danger">
+                    Material type is required.
+                </p>
+            </div>
+            <!-- EO: Material -->
+        </div>
+        <div class="row">
+            <!-- Year -->
+            <div class="form-group col-md-6 mb-3">
+                <label for="year" class="text-white font-weight-bold">Year</label>
+                <input id="year"
+                       th:errorclass="is-invalid"
+                       th:field="*{year}"
+                       type="number"
+                       class="form-control"
+                       placeholder="Manufacturing year"/>
+                <p th:if="${#fields.hasErrors('year')}"
+                   class="errors alert alert-danger"
+                   th:errors="*{year}">
+                </p>
+            </div>
+            <!-- EO: Year -->
+
+            <!-- Dimensions -->
+            <div class="form-group">
+                <label class="text-white font-weight-bold" for="dimensions">Dimensions</label>
+                <textarea id="dimensions"
+                       th:field="*{dimensions}"
+                       th:errorclass="is-invalid"
+                       type="textarea"
+                       class="form-control"
+                       placeholder="Dimensions in centimeters">
+                </textarea>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Dimensions in centimeters is required.
+                </p>
+            </div>
+            <!-- EO: Dimensions -->
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="description">Description</label>
+            <textarea id="description"
+                      th:field="*{description}"
+                      th:errorclass="is-invalid"
+                      type="textarea"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Description">
+            </textarea>
+            <p class="invalid-feedback errors alert alert-danger">
+                Description is required.
+            </p>
+        </div>
+        <!-- EO: Description -->
+
+        <!-- Image URL -->
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
+            <input id="imageUrl"
+                   th:field="*{imageUrl}"
+                   th:errorclass="is-invalid"
+                   type="url" class="form-control"
+                   placeholder="Put art image URL here">
+            <p class="invalid-feedback errors alert alert-danger">
+                Art image URL is required.
+            </p>
+        </div>
+        <!-- EO: Image URL -->
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Submit Art"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>
